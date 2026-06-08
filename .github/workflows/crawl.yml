@@ -32,6 +32,11 @@ jobs:
       - name: Install deps
         run: pip install -r requirements.txt
 
+      - name: Tests (classifier + sources)
+        run: |
+          python -m tests.test_classify
+          python -m tests.test_sources
+
       - name: Run crawl
         run: python -m scripts.run_crawl
 

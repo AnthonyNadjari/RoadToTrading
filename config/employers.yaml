@@ -102,7 +102,7 @@ employers:
   - {id: jpmorgan,      name: "J.P. Morgan (Markets)",  type: BANK,  tier: 1, ats: unknown, status: candidate, careers_url: "https://careers.jpmorgan.com/"}
   - {id: bofa,          name: "Bank of America (Global Markets)", type: BANK, tier: 1, ats: unknown, status: candidate, careers_url: "https://careers.bankofamerica.com/"}
   - {id: citi,          name: "Citi (Markets)",         type: BANK,  tier: 1, ats: unknown, status: candidate, careers_url: "https://jobs.citi.com/"}
-  - {id: barclays,      name: "Barclays (Markets)",     type: BANK,  tier: 1, ats: unknown, status: candidate, careers_url: "https://search.jobs.barclays/"}
+  - {id: barclays,      name: "Barclays (Markets)",     type: BANK,  tier: 1, ats: workday, status: verified, careers_url: "https://search.jobs.barclays/", workday: {tenant: barclays, host: wd3, site: External_Career_Site_Barclays}}
   - {id: bnpparibas,    name: "BNP Paribas (Global Markets)", type: BANK, tier: 1, ats: unknown, status: candidate, careers_url: "https://group.bnpparibas/en/careers"}
   - {id: socgen,        name: "Societe Generale (Global Markets)", type: BANK, tier: 1, ats: unknown, status: candidate, careers_url: "https://careers.societegenerale.com/"}
   - {id: deutschebank,  name: "Deutsche Bank (IB Markets)", type: BANK, tier: 1, ats: unknown, status: candidate, careers_url: "https://careers.db.com/"}

@@ -12,15 +12,16 @@ from __future__ import annotations
 import logging
 from datetime import datetime, timezone, timedelta
 
-from .config import load_employers
+from .config import load_employers, load_queries
 from .dedup import build_canonical
 from .models import RawPosting, STATUS_OPEN, STATUS_STALE, STATUS_CLOSED
-from .scrapers import get_scraper
+from .scrapers import get_scraper, get_query_scraper, QUERY_SOURCE_NAMES
 from . import store
 
 log = logging.getLogger("jobintel.pipeline")
 
 GRACE_RUNS = 2            # misses before a job is marked CLOSED (~1 day @ 2x/day)
+QUERY_GRACE_RUNS = 6     # larger grace for query-only jobs (ranking is volatile)
 PURGE_CLOSED_DAYS = 180   # drop long-closed jobs to bound state size
 
 
@@ -37,7 +38,7 @@ def scrape_all(employers: list[dict]) -> tuple[list[RawPosting], dict, set[str]]
     for emp in employers:
         ats = emp.get("ats", "unknown")
         scraper = get_scraper(ats) if ats not in (None, "unknown") else None
-        if scraper is None or not emp.get("token"):
+        if scraper is None or not scraper.configured(emp):
             health[emp["id"]] = {"status": "skipped", "reason": f"ats={ats}", "count": 0}
             continue
         try:
@@ -52,6 +53,40 @@ def scrape_all(employers: list[dict]) -> tuple[list[RawPosting], dict, set[str]]
     return raws, health, crawled_ok
 
 
+def scrape_queries() -> tuple[list[RawPosting], dict, bool]:
+    """Run market-wide query sources (LinkedIn/eFC). Best-effort: returns
+    (raw_postings, health_by_source, any_source_ran_ok)."""
+    cfg = load_queries()
+    keywords = cfg.get("keywords", [])
+    locations = cfg.get("locations", [])
+    raws: list[RawPosting] = []
+    health: dict[str, dict] = {}
+    any_ok = False
+
+    for sname, sconf in cfg.get("sources", {}).items():
+        if not sconf.get("enabled"):
+            continue
+        scraper = get_query_scraper(sname)
+        if scraper is None:
+            continue
+        count, errors = 0, 0
+        for kw in keywords:
+            for loc in locations:
+                try:
+                    res = scraper.search(kw, loc)
+                    raws.extend(res)
+                    count += len(res)
+                except Exception as exc:  # noqa: BLE001 - isolate per query
+                    errors += 1
+                    log.warning("query %s '%s'@%s failed: %s", sname, kw, loc, exc)
+        ran_ok = count > 0
+        any_ok = any_ok or ran_ok
+        health[sname] = {"status": "ok" if ran_ok else ("error" if errors else "empty"),
+                         "count": count, "errors": errors}
+        log.info("query source %-18s -> %d postings (%d errors)", sname, count, errors)
+    return raws, health, any_ok
+
+
 def run_crawl() -> dict:
     now = _now()
     employers = load_employers()
@@ -63,6 +98,9 @@ def run_crawl() -> dict:
     prev_health = prev_meta.get("source_health", {})
 
     raws, health, crawled_ok = scrape_all(employers)
+    q_raws, q_health, query_ran_ok = scrape_queries()
+    raws = raws + q_raws
+    health.update(q_health)
     new_jobs, new_sources = build_canonical(raws, emp_type, now)
 
     events: list[dict] = []
@@ -101,15 +139,24 @@ def run_crawl() -> dict:
                 old.status = STATUS_OPEN
                 merged_jobs[jid] = old
 
-    # ---- absent jobs: STALE -> CLOSED (only for employers crawled ok) ----
+    # ---- absent jobs: STALE -> CLOSED ----
+    # ATS-backed jobs close after GRACE_RUNS. Query-only jobs (LinkedIn/eFC),
+    # whose ranking is volatile, only close after the larger QUERY_GRACE_RUNS,
+    # and only when a query source actually ran this turn. Jobs whose source
+    # wasn't crawled at all are left untouched (cannot conclude closure).
     seen_now = set(new_jobs)
     for jid, j in list(merged_jobs.items()):
         if jid in seen_now:
             continue
-        if j.employer_id not in crawled_ok:
+        query_only = bool(j.sources) and set(j.sources) <= QUERY_SOURCE_NAMES
+        if j.employer_id in crawled_ok:
+            grace = GRACE_RUNS
+        elif query_ran_ok and query_only:
+            grace = QUERY_GRACE_RUNS
+        else:
             continue  # cannot conclude closure if its source wasn't crawled
         j.missing_runs += 1
-        if j.missing_runs >= GRACE_RUNS and j.status != STATUS_CLOSED:
+        if j.missing_runs >= grace and j.status != STATUS_CLOSED:
             j.status = STATUS_CLOSED
             j.last_changed = now
             if j.in_scope:

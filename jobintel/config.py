@@ -25,3 +25,7 @@ def load_taxonomy() -> dict:
 
 def load_employers() -> list[dict]:
     return load_yaml("employers.yaml")["employers"]
+
+
+def load_queries() -> dict:
+    return load_yaml("queries.yaml")

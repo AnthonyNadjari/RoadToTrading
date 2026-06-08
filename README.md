@@ -16,8 +16,8 @@ mesurée** (≈95 % sur la watchlist ATS) — pas une garantie absolue de zéro-
 | Compute | **GitHub Actions** cron 2×/jour (gratuit) |
 | Stockage | **JSON git-diffable** committé dans le repo (historique = git, 0 binaire) |
 | Frontend | **SPA statique** sur GitHub Pages, filtrage client-side |
-| Sources socle | **Career pages via ATS** (Greenhouse/Lever/Ashby/Recruitee/Workable/SmartRecruiters) |
-| LinkedIn / eFC | **best-effort** seulement (anti-bot + légal ⇒ non garanti à 0 €) |
+| Sources socle | **Career pages via ATS** (Greenhouse/Lever/Ashby/Recruitee/Workable/SmartRecruiters/**Workday**) |
+| LinkedIn / eFC | **best-effort** : moteurs de recherche marché-large, isolés, ne ferment jamais d'offre (anti-bot + légal ⇒ non garanti à 0 €) |
 | « IA » | **règles déterministes** (taxonomie) ; LLM = humain/Claude en maintenance |
 | Périmètre | Trading, Quant Trading, Quant Research, Structuring, Strats, Quant Dev (2ndaire) — **pas de Sales**, pas d'AM long-only / risk / compliance / ops / M&A |
 | « 1 offre » | même req multi-villes = **1 offre** (union des localisations) |
@@ -28,7 +28,11 @@ mesurée** (≈95 % sur la watchlist ATS) — pas une garantie absolue de zéro-
 GitHub Actions (cron 2x/jour)
    │
    ├─ scrapers ATS (JSON officiels, isolés par employeur)
-   │     greenhouse · lever · ashby · recruitee · workable · smartrecruiters
+   │     greenhouse · lever · ashby · recruitee · workable · smartrecruiters · workday
+   │
+   ├─ query sources (marché-large, best-effort, isolées)
+   │     linkedin (guest API) · efinancialcareers (JSON embarqué)
+   │       → cross-link vers la watchlist OU employeurs `ext-*` (découverte)
    │
    ├─ pipeline (déterministe, 0 LLM)
    │     normalize → classify (rôle/scope/séniorité/asset) → dedup multi-sources

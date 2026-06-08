@@ -1,0 +1,28 @@
+# Market-wide query sources (LinkedIn / eFinancialCareers).
+#
+# These run keyword x location searches to discover postings across the WHOLE
+# market -- including firms not on the watchlist -- and to cross-link offers
+# that also appear on a watchlist firm's career page. BEST-EFFORT: both sources
+# are anti-bot + ToS-restricted, so failures are tolerated and they never drive
+# CLOSED inference. Tune keywords/locations/`enabled` to balance coverage vs
+# request volume (and block risk on shared CI IPs).
+
+sources:
+  linkedin:
+    enabled: true
+  efinancialcareers:
+    enabled: true
+
+# Kept tight on purpose: keywords x locations x pages = request budget.
+keywords:
+  - "quantitative trader"
+  - "quantitative researcher"
+  - "systematic trading"
+  - "structurer"
+  - "quantitative strategist"
+  - "trader"
+
+locations:
+  - "London"
+  - "Paris"
+  - "Geneva"

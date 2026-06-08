@@ -34,7 +34,8 @@ def build_canonical(raws: list[RawPosting], employer_type_by_id: dict[str, str],
         norm = normalize_title(r.raw_title)
         if not norm:
             continue
-        etype = employer_type_by_id.get(r.employer_id, "")
+        etype = employer_type_by_id.get(r.employer_id) or (
+            "OTHER" if r.employer_id.startswith("ext-") else "")
         cls = classify(norm, r.department, etype)
         jid = canonical_job_id(r.employer_id, norm, cls.role_family)
         sid = r.source_id()
