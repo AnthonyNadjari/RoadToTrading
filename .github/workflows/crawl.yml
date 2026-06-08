@@ -1,0 +1,63 @@
+name: crawl
+
+# Twice-daily crawl (06:00 & 18:00 UTC) + manual trigger.
+on:
+  schedule:
+    - cron: "0 6,18 * * *"
+  workflow_dispatch:
+
+# Allow committing refreshed state back to the branch and deploying Pages.
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: crawl
+  cancel-in-progress: false
+
+jobs:
+  crawl:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - name: Install deps
+        run: pip install -r requirements.txt
+
+      - name: Run crawl
+        run: python -m scripts.run_crawl
+
+      - name: Commit refreshed state
+        run: |
+          git config user.name  "jobintel-bot"
+          git config user.email "actions@github.com"
+          git add data web/data
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+          else
+            git commit -m "data: refresh crawl $(date -u +%Y-%m-%dT%H:%MZ)"
+            git push origin ${{ github.ref_name }}
+          fi
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: web
+
+  deploy-pages:
+    needs: crawl
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - id: deploy
+        uses: actions/deploy-pages@v4

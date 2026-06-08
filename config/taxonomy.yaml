@@ -1,0 +1,169 @@
+# Role taxonomy + scope rules for the job-intelligence pipeline.
+# Everything here is DETERMINISTIC (no LLM at runtime, by design / 0-budget).
+# Matching is done on the lowercased, normalized job title (+ department when available).
+#
+# Classification order:
+#   1. If any `exclude` term matches  -> in_scope = false (OUT)
+#   2. Else score each role family by its keywords; pick the highest score.
+#      Ties are broken by `priority` (lower number wins).
+#   3. If no family matches            -> in_scope = false (UNCLASSIFIED)
+
+# Hard exclusions. Whole-word, case-insensitive. These win over everything.
+exclude:
+  - risk
+  - compliance
+  - audit
+  - auditor
+  - operations
+  - "middle office"
+  - "back office"
+  - settlement
+  - settlements
+  - reconciliation
+  - "corporate finance"
+  - "m&a"
+  - "mergers"
+  - "investment banking division"
+  - wealth
+  - "private bank"
+  - "private banking"
+  - "asset servicing"
+  - "fund accounting"
+  - "fund administration"
+  - accountant
+  - accounting
+  - "investor relations"
+  - "client service"
+  - "relationship manager"
+  - sales            # user explicitly excluded sales
+  - "sales trader"   # belongs to sales desk, excluded per request
+  - marketing
+  - "human resources"
+  - recruiter
+  - "talent acquisition"
+  - legal
+  - paralegal
+  - tax
+  - treasury
+  - custody
+  - "loan"
+  - "credit risk"
+  - "market risk"
+  - "valuation control"
+  - "product control"
+
+# Role families, in business priority order (priority: lower = preferred on ties).
+roles:
+  TRADING:
+    priority: 1
+    label: "Trading"
+    keywords:
+      - trader
+      - trading
+      - "execution trader"
+      - "market maker"
+      - "market making"
+      - "options trader"
+      - "delta one"
+      - "flow trading"
+      - "prop trader"
+      - "proprietary trading"
+  QUANT_TRADING:
+    priority: 2
+    label: "Quantitative Trading"
+    keywords:
+      - "quant trader"
+      - "quantitative trader"
+      - "quant trading"
+      - "quantitative trading"
+      - "algo trader"
+      - "algorithmic trad"
+      - "systematic trad"
+      - "automated trading"
+  QUANT_RESEARCH:
+    priority: 3
+    label: "Quantitative Research"
+    keywords:
+      - "quant research"
+      - "quantitative research"
+      - "quant researcher"
+      - "quantitative researcher"
+      - "research scientist"
+      - "researcher"
+      - "qr "
+      - "signals research"
+      - "alpha research"
+  STRUCTURING:
+    priority: 4
+    label: "Structuring"
+    keywords:
+      - structurer
+      - structuring
+      - "structured products"
+  STRATS:
+    priority: 5
+    label: "Strats"
+    keywords:
+      - strat
+      - strats
+      - strategist
+      - "quantitative strategist"
+  QUANT_DEV:
+    priority: 6           # secondary per spec: required quant/trading context
+    label: "Quant Development"
+    keywords:
+      - "quant dev"
+      - "quantitative developer"
+      - "quant developer"
+      - "trading systems"
+      - "low latency"
+      - "low-latency"
+      - "core developer"
+      - "c++ developer"
+      - "trading technology"
+      - "execution platform"
+
+# Seniority detection (first match wins, top to bottom).
+seniority:
+  INTERN:    ["intern", "internship", "stage", "stagiaire", "placement", "co-op", "summer analyst"]
+  GRADUATE:  ["graduate", "new grad", "new-grad", "campus", "early career", "trainee", "apprentice", "rotational"]
+  JUNIOR:    ["junior", "analyst"]
+  MID:       ["associate", "vp", "vice president"]
+  SENIOR:    ["senior", "lead", "principal", "staff", "experienced"]
+  HEAD:      ["head", "director", "managing director", "md", "chief", "portfolio manager", " pm ", "desk head"]
+
+# Asset-class tagging (multi-label; all matches kept).
+asset_classes:
+  EQUITIES:    ["equit", "stock", "cash equities", "single stock", "etf"]
+  RATES:       ["rates", "fixed income", "govies", "government bond", "swaps", "irs", "ig rates"]
+  FX:          ["fx", "foreign exchange", "currencies", "currency"]
+  CREDIT:      ["credit", "cds", "high yield", "investment grade", "clo"]
+  COMMODITIES: ["commodit", "energy", "power", "gas", "oil", "metals", "agric", "lng", "emissions"]
+  CRYPTO:      ["crypto", "digital asset", "defi", "web3", "blockchain"]
+  VOL_EXOTICS: ["volatility", "vol ", "options", "exotic", "derivative", "vega", "gamma"]
+  FUTURES:     ["futures", "listed derivatives"]
+  MULTI_ASSET: ["multi-asset", "multi asset", "cross-asset", "cross asset"]
+
+# Target geography. is_target=true means a city in our priority scope.
+# Matching is substring on the location string, case-insensitive.
+geo:
+  priority:   # absolute priority cities
+    - paris
+    - london
+    - geneva
+    - geneve
+    - genève
+  secondary:  # still in-scope Europe
+    - amsterdam
+    - dublin
+    - frankfurt
+    - zurich
+    - zug
+    - milan
+    - madrid
+    - luxembourg
+    - brussels
+    - stockholm
+    - copenhagen
+    - munich
+    - berlin

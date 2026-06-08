@@ -1,0 +1,117 @@
+# ============================================================================
+# Employer watchlist (buy-side / quant / MM / prop / market-trading desks).
+#
+# schema per entry:
+#   id:          stable slug (primary key, never change once set)
+#   name:        display name
+#   type:        HF | MM | PROP | QUANT | BANK
+#   tier:        1 = top priority coverage, 2 = secondary
+#   ats:         greenhouse | lever | ashby | recruitee | workable | smartrecruiters
+#                | workday | custom | unknown
+#   token:       board token for the ATS (when ats is a JSON provider)
+#   careers_url: human careers page (used by detect_ats + frontend deep links)
+#   status:      verified  (endpoint probed, returns this firm's real jobs)
+#                candidate (target firm, ATS not yet resolved -> detect_ats)
+#
+# "verified" entries below were probed live and return the named firm's own
+# postings. "candidate" entries are real target firms whose ATS is custom /
+# Workday / not-yet-found; detect_ats.py tries to resolve them each run, and
+# until then they are covered (best-effort) via the aggregator/LinkedIn layer.
+# ============================================================================
+
+employers:
+
+  # ---- VERIFIED: Greenhouse ------------------------------------------------
+  - {id: janestreet,    name: "Jane Street",            type: PROP,  tier: 1, ats: greenhouse, token: janestreet,        status: verified, careers_url: "https://www.janestreet.com/join-jane-street/open-positions/"}
+  - {id: imc,           name: "IMC Trading",            type: MM,    tier: 1, ats: greenhouse, token: imc,               status: verified, careers_url: "https://careers.imc.com/"}
+  - {id: flowtraders,   name: "Flow Traders",           type: MM,    tier: 1, ats: greenhouse, token: flowtraders,       status: verified, careers_url: "https://www.flowtraders.com/careers"}
+  - {id: optiver,       name: "Optiver",                type: MM,    tier: 1, ats: greenhouse, token: optiverus,         status: verified, careers_url: "https://optiver.com/working-at-optiver/career-opportunities/"}
+  - {id: point72,       name: "Point72",                type: HF,    tier: 1, ats: greenhouse, token: point72,           status: verified, careers_url: "https://careers.point72.com/"}
+  - {id: marshallwace,  name: "Marshall Wace",          type: HF,    tier: 1, ats: greenhouse, token: marshallwace,      status: verified, careers_url: "https://www.mwam.com/careers/"}
+  - {id: mangroup,      name: "Man Group",              type: HF,    tier: 1, ats: greenhouse, token: mangroup,          status: verified, careers_url: "https://www.man.com/careers"}
+  - {id: jumptrading,   name: "Jump Trading",           type: PROP,  tier: 1, ats: greenhouse, token: jumptrading,       status: verified, careers_url: "https://www.jumptrading.com/careers/"}
+  - {id: virtu,         name: "Virtu Financial",        type: MM,    tier: 1, ats: greenhouse, token: virtu,             status: verified, careers_url: "https://www.virtu.com/careers/"}
+  - {id: akunacapital,  name: "Akuna Capital",          type: MM,    tier: 1, ats: greenhouse, token: akunacapital,      status: verified, careers_url: "https://akunacapital.com/careers"}
+  - {id: davinci,       name: "Da Vinci Derivatives",   type: MM,    tier: 2, ats: greenhouse, token: davinciderivatives,status: verified, careers_url: "https://careers.davinciderivatives.com/"}
+  - {id: mako,          name: "Mako Trading",           type: MM,    tier: 2, ats: greenhouse, token: mako,              status: verified, careers_url: "https://mako.com/careers"}
+  - {id: gsacapital,    name: "GSA Capital",            type: HF,    tier: 1, ats: greenhouse, token: gsacapital,        status: verified, careers_url: "https://www.gsacapital.com/careers"}
+  - {id: schonfeld,     name: "Schonfeld",              type: HF,    tier: 1, ats: greenhouse, token: schonfeld,         status: verified, careers_url: "https://www.schonfeld.com/careers/"}
+  - {id: aqr,           name: "AQR Capital Management",  type: HF,    tier: 1, ats: greenhouse, token: aqr,               status: verified, careers_url: "https://www.aqr.com/About-Us/Careers"}
+  - {id: engineersgate, name: "Engineers Gate",         type: HF,    tier: 2, ats: greenhouse, token: engineersgate,     status: verified, careers_url: "https://www.engineersgate.com/"}
+  - {id: ctc,           name: "Chicago Trading Co (CTC)",type: MM,    tier: 1, ats: greenhouse, token: chicagotrading,    status: verified, careers_url: "https://www.chicagotrading.com/careers/"}
+  - {id: winton,        name: "Winton Group",           type: HF,    tier: 1, ats: greenhouse, token: winton,            status: verified, careers_url: "https://www.winton.com/careers"}
+  - {id: worldquant,    name: "WorldQuant",             type: HF,    tier: 1, ats: greenhouse, token: worldquant,        status: verified, careers_url: "https://www.worldquant.com/career-listing/"}
+  - {id: exoduspoint,   name: "ExodusPoint Capital",    type: HF,    tier: 1, ats: greenhouse, token: exoduspoint,       status: verified, careers_url: "https://www.exoduspoint.com/careers"}
+  - {id: squarepoint,   name: "Squarepoint Capital",    type: HF,    tier: 1, ats: greenhouse, token: squarepointcapital, status: verified, careers_url: "https://www.squarepoint-capital.com/careers"}
+
+  # ---- VERIFIED: Ashby -----------------------------------------------------
+  - {id: voleon,        name: "The Voleon Group",       type: HF,    tier: 1, ats: ashby,      token: voleon,            status: verified, careers_url: "https://jobs.ashbyhq.com/voleon"}
+
+  # ---- VERIFIED: Workable --------------------------------------------------
+  - {id: caxton,        name: "Caxton Associates",      type: HF,    tier: 1, ats: workable,   token: caxton,            status: verified, careers_url: "https://apply.workable.com/caxton/"}
+  - {id: trexquant,     name: "Trexquant Investment",   type: HF,    tier: 2, ats: workable,   token: trexquant,         status: verified, careers_url: "https://apply.workable.com/trexquant/"}
+
+  # ---- CANDIDATES: top MM / prop (custom or Workday portals, resolve later) -
+  - {id: citadelsec,    name: "Citadel Securities",     type: MM,    tier: 1, ats: unknown, status: candidate, careers_url: "https://www.citadelsecurities.com/careers/open-opportunities/"}
+  - {id: citadel,       name: "Citadel",                type: HF,    tier: 1, ats: unknown, status: candidate, careers_url: "https://www.citadel.com/careers/open-opportunities/"}
+  - {id: hrt,           name: "Hudson River Trading",   type: PROP,  tier: 1, ats: unknown, status: candidate, careers_url: "https://www.hudsonrivertrading.com/careers/"}
+  - {id: drw,           name: "DRW",                    type: PROP,  tier: 1, ats: unknown, status: candidate, careers_url: "https://drw.com/work-at-drw/listings"}
+  - {id: sig,           name: "Susquehanna (SIG)",      type: MM,    tier: 1, ats: unknown, status: candidate, careers_url: "https://careers.sig.com/"}
+  - {id: towerresearch, name: "Tower Research Capital", type: PROP,  tier: 1, ats: unknown, status: candidate, careers_url: "https://www.tower-research.com/open-positions/"}
+  - {id: xtx,           name: "XTX Markets",            type: MM,    tier: 1, ats: unknown, status: candidate, careers_url: "https://www.xtxmarkets.com/careers/"}
+  - {id: qrt,           name: "Qube Research & Technologies", type: HF, tier: 1, ats: unknown, status: candidate, careers_url: "https://www.qube-rt.com/careers"}
+  - {id: maven,         name: "Maven Securities",       type: MM,    tier: 2, ats: unknown, status: candidate, careers_url: "https://www.mavensecurities.com/careers/"}
+  - {id: wintermute,    name: "Wintermute",             type: MM,    tier: 2, ats: unknown, status: candidate, careers_url: "https://www.wintermute.com/careers"}
+  - {id: oldmission,    name: "Old Mission Capital",    type: MM,    tier: 2, ats: unknown, status: candidate, careers_url: "https://www.oldmissioncapital.com/careers/"}
+  - {id: wolverine,     name: "Wolverine Trading",      type: MM,    tier: 2, ats: unknown, status: candidate, careers_url: "https://www.wolve.com/careers"}
+  - {id: belvedere,     name: "Belvedere Trading",      type: MM,    tier: 2, ats: unknown, status: candidate, careers_url: "https://belvederetrading.com/careers/"}
+  - {id: peak6,         name: "PEAK6",                  type: PROP,  tier: 2, ats: unknown, status: candidate, careers_url: "https://peak6.com/careers/"}
+  - {id: fiverings,     name: "Five Rings",             type: PROP,  tier: 2, ats: unknown, status: candidate, careers_url: "https://www.fiverings.com/careers"}
+  - {id: radix,         name: "Radix Trading",          type: PROP,  tier: 2, ats: unknown, status: candidate, careers_url: "https://www.radixtrading.co/"}
+  - {id: headlands,     name: "Headlands Technologies", type: PROP,  tier: 2, ats: unknown, status: candidate, careers_url: "https://www.headlandstech.com/careers/"}
+  - {id: quadrature,    name: "Quadrature Capital",     type: HF,    tier: 2, ats: unknown, status: candidate, careers_url: "https://www.quadrature.ai/careers"}
+  - {id: tibra,         name: "Tibra",                  type: MM,    tier: 2, ats: unknown, status: candidate, careers_url: "https://www.tibra.com/careers/"}
+  - {id: vivcourt,      name: "VivCourt Trading",       type: PROP,  tier: 2, ats: unknown, status: candidate, careers_url: "https://vivcourt.com/careers/"}
+
+  # ---- CANDIDATES: quant hedge funds ---------------------------------------
+  - {id: twosigma,      name: "Two Sigma",              type: HF,    tier: 1, ats: unknown, status: candidate, careers_url: "https://careers.twosigma.com/"}
+  - {id: deshaw,        name: "D. E. Shaw",             type: HF,    tier: 1, ats: unknown, status: candidate, careers_url: "https://www.deshaw.com/careers"}
+  - {id: pdtpartners,   name: "PDT Partners",           type: HF,    tier: 1, ats: unknown, status: candidate, careers_url: "https://www.pdtpartners.com/careers"}
+  - {id: gresearch,     name: "G-Research",             type: HF,    tier: 1, ats: unknown, status: candidate, careers_url: "https://www.gresearch.com/vacancies/"}
+  - {id: millennium,    name: "Millennium",             type: HF,    tier: 1, ats: unknown, status: candidate, careers_url: "https://www.mlp.com/careers/"}
+  - {id: balyasny,      name: "Balyasny (BAM)",         type: HF,    tier: 1, ats: unknown, status: candidate, careers_url: "https://www.bamfunds.com/careers/"}
+  - {id: brevanhoward,  name: "Brevan Howard",          type: HF,    tier: 1, ats: unknown, status: candidate, careers_url: "https://www.brevanhoward.com/careers/"}
+  - {id: capula,        name: "Capula Investment Mgmt", type: HF,    tier: 1, ats: unknown, status: candidate, careers_url: "https://www.capula.com/careers"}
+  - {id: rokos,         name: "Rokos Capital Mgmt",     type: HF,    tier: 1, ats: unknown, status: candidate, careers_url: "https://www.rokoscapital.com/careers"}
+  - {id: eisler,        name: "Eisler Capital",         type: HF,    tier: 1, ats: unknown, status: candidate, careers_url: "https://www.eislercapital.com/careers"}
+  - {id: systematica,   name: "Systematica Investments",type: HF,    tier: 1, ats: unknown, status: candidate, careers_url: "https://www.systematica.com/careers"}
+  - {id: oxam,          name: "Oxford Asset Management", type: HF,   tier: 1, ats: unknown, status: candidate, careers_url: "https://www.oxam.com/careers/"}
+  - {id: transtrend,    name: "Transtrend",             type: HF,    tier: 2, ats: unknown, status: candidate, careers_url: "https://www.transtrend.com/en/careers/"}
+  - {id: lynx,          name: "Lynx Asset Management",  type: HF,    tier: 2, ats: unknown, status: candidate, careers_url: "https://www.lynxhedge.se/career/"}
+  - {id: aspectcapital, name: "Aspect Capital",         type: HF,    tier: 2, ats: unknown, status: candidate, careers_url: "https://www.aspectcapital.com/careers"}
+  - {id: verition,      name: "Verition Fund Mgmt",     type: HF,    tier: 2, ats: unknown, status: candidate, careers_url: "https://www.verition.com/careers/"}
+  - {id: walleye,       name: "Walleye Capital",        type: HF,    tier: 2, ats: unknown, status: candidate, careers_url: "https://walleye.com/careers/"}
+  - {id: kepos,         name: "Kepos Capital",          type: HF,    tier: 2, ats: unknown, status: candidate, careers_url: "https://www.kepos.com/careers"}
+  - {id: cubist,        name: "Cubist (Point72)",       type: HF,    tier: 2, ats: unknown, status: candidate, careers_url: "https://careers.point72.com/"}
+  - {id: florincourt,   name: "Florin Court Capital",   type: HF,    tier: 2, ats: unknown, status: candidate, careers_url: "https://www.florincourtcapital.com/careers"}
+
+  # ---- CANDIDATES: investment banks (markets / S&T / quant only) -----------
+  # ATS = Workday/custom; covered best-effort. Filtered to trading/quant roles.
+  - {id: goldmansachs,  name: "Goldman Sachs (Securities)", type: BANK, tier: 1, ats: unknown, status: candidate, careers_url: "https://www.goldmansachs.com/careers/"}
+  - {id: morganstanley, name: "Morgan Stanley (S&T)",   type: BANK,  tier: 1, ats: unknown, status: candidate, careers_url: "https://www.morganstanley.com/careers"}
+  - {id: jpmorgan,      name: "J.P. Morgan (Markets)",  type: BANK,  tier: 1, ats: unknown, status: candidate, careers_url: "https://careers.jpmorgan.com/"}
+  - {id: bofa,          name: "Bank of America (Global Markets)", type: BANK, tier: 1, ats: unknown, status: candidate, careers_url: "https://careers.bankofamerica.com/"}
+  - {id: citi,          name: "Citi (Markets)",         type: BANK,  tier: 1, ats: unknown, status: candidate, careers_url: "https://jobs.citi.com/"}
+  - {id: barclays,      name: "Barclays (Markets)",     type: BANK,  tier: 1, ats: unknown, status: candidate, careers_url: "https://search.jobs.barclays/"}
+  - {id: bnpparibas,    name: "BNP Paribas (Global Markets)", type: BANK, tier: 1, ats: unknown, status: candidate, careers_url: "https://group.bnpparibas/en/careers"}
+  - {id: socgen,        name: "Societe Generale (Global Markets)", type: BANK, tier: 1, ats: unknown, status: candidate, careers_url: "https://careers.societegenerale.com/"}
+  - {id: deutschebank,  name: "Deutsche Bank (IB Markets)", type: BANK, tier: 1, ats: unknown, status: candidate, careers_url: "https://careers.db.com/"}
+  - {id: ubs,           name: "UBS (Investment Bank)",  type: BANK,  tier: 1, ats: unknown, status: candidate, careers_url: "https://www.ubs.com/global/en/careers.html"}
+  - {id: hsbc,          name: "HSBC (Markets & Securities Services)", type: BANK, tier: 2, ats: unknown, status: candidate, careers_url: "https://www.hsbc.com/careers"}
+  - {id: nomura,        name: "Nomura (Wholesale)",     type: BANK,  tier: 2, ats: unknown, status: candidate, careers_url: "https://www.nomura.com/careers/"}
+  - {id: natixis,       name: "Natixis CIB",            type: BANK,  tier: 2, ats: unknown, status: candidate, careers_url: "https://careers.natixis.com/"}
+  - {id: rbc,           name: "RBC Capital Markets",    type: BANK,  tier: 2, ats: unknown, status: candidate, careers_url: "https://jobs.rbc.com/"}
+
+  # NOTE: roster is intentionally seeded with high-confidence real firms.
+  # Run `python -m scripts.detect_ats` to resolve `ats: unknown` entries and
+  # to append newly discovered employers. Target steady-state size ~300.

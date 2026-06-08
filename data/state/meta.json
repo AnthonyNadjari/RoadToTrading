@@ -1,0 +1,538 @@
+{
+  "counts": {
+    "employers_crawled_ok": 24,
+    "employers_total": 78,
+    "jobs_in_scope_open": 303,
+    "jobs_total": 1231,
+    "purged": 0,
+    "raw_postings": 1483
+  },
+  "events_this_run": {
+    "NEW": 303
+  },
+  "last_run": "2026-06-08T18:37:09+00:00",
+  "source_health": {
+    "akunacapital": {
+      "consecutive_failures": 0,
+      "count": 30,
+      "last_ok": "2026-06-08T18:37:09+00:00",
+      "status": "ok"
+    },
+    "aqr": {
+      "consecutive_failures": 0,
+      "count": 41,
+      "last_ok": "2026-06-08T18:37:09+00:00",
+      "status": "ok"
+    },
+    "aspectcapital": {
+      "consecutive_failures": 0,
+      "count": 0,
+      "last_ok": null,
+      "reason": "ats=unknown",
+      "status": "skipped"
+    },
+    "balyasny": {
+      "consecutive_failures": 0,
+      "count": 0,
+      "last_ok": null,
+      "reason": "ats=unknown",
+      "status": "skipped"
+    },
+    "barclays": {
+      "consecutive_failures": 0,
+      "count": 0,
+      "last_ok": null,
+      "reason": "ats=unknown",
+      "status": "skipped"
+    },
+    "belvedere": {
+      "consecutive_failures": 0,
+      "count": 0,
+      "last_ok": null,
+      "reason": "ats=unknown",
+      "status": "skipped"
+    },
+    "bnpparibas": {
+      "consecutive_failures": 0,
+      "count": 0,
+      "last_ok": null,
+      "reason": "ats=unknown",
+      "status": "skipped"
+    },
+    "bofa": {
+      "consecutive_failures": 0,
+      "count": 0,
+      "last_ok": null,
+      "reason": "ats=unknown",
+      "status": "skipped"
+    },
+    "brevanhoward": {
+      "consecutive_failures": 0,
+      "count": 0,
+      "last_ok": null,
+      "reason": "ats=unknown",
+      "status": "skipped"
+    },
+    "capula": {
+      "consecutive_failures": 0,
+      "count": 0,
+      "last_ok": null,
+      "reason": "ats=unknown",
+      "status": "skipped"
+    },
+    "caxton": {
+      "consecutive_failures": 0,
+      "count": 24,
+      "last_ok": "2026-06-08T18:37:09+00:00",
+      "status": "ok"
+    },
+    "citadel": {
+      "consecutive_failures": 0,
+      "count": 0,
+      "last_ok": null,
+      "reason": "ats=unknown",
+      "status": "skipped"
+    },
+    "citadelsec": {
+      "consecutive_failures": 0,
+      "count": 0,
+      "last_ok": null,
+      "reason": "ats=unknown",
+      "status": "skipped"
+    },
+    "citi": {
+      "consecutive_failures": 0,
+      "count": 0,
+      "last_ok": null,
+      "reason": "ats=unknown",
+      "status": "skipped"
+    },
+    "ctc": {
+      "consecutive_failures": 0,
+      "count": 26,
+      "last_ok": "2026-06-08T18:37:09+00:00",
+      "status": "ok"
+    },
+    "cubist": {
+      "consecutive_failures": 0,
+      "count": 0,
+      "last_ok": null,
+      "reason": "ats=unknown",
+      "status": "skipped"
+    },
+    "davinci": {
+      "consecutive_failures": 0,
+      "count": 11,
+      "last_ok": "2026-06-08T18:37:09+00:00",
+      "status": "ok"
+    },
+    "deshaw": {
+      "consecutive_failures": 0,
+      "count": 0,
+      "last_ok": null,
+      "reason": "ats=unknown",
+      "status": "skipped"
+    },
+    "deutschebank": {
+      "consecutive_failures": 0,
+      "count": 0,
+      "last_ok": null,
+      "reason": "ats=unknown",
+      "status": "skipped"
+    },
+    "drw": {
+      "consecutive_failures": 0,
+      "count": 0,
+      "last_ok": null,
+      "reason": "ats=unknown",
+      "status": "skipped"
+    },
+    "eisler": {
+      "consecutive_failures": 0,
+      "count": 0,
+      "last_ok": null,
+      "reason": "ats=unknown",
+      "status": "skipped"
+    },
+    "engineersgate": {
+      "consecutive_failures": 0,
+      "count": 10,
+      "last_ok": "2026-06-08T18:37:09+00:00",
+      "status": "ok"
+    },
+    "exoduspoint": {
+      "consecutive_failures": 0,
+      "count": 2,
+      "last_ok": "2026-06-08T18:37:09+00:00",
+      "status": "ok"
+    },
+    "fiverings": {
+      "consecutive_failures": 0,
+      "count": 0,
+      "last_ok": null,
+      "reason": "ats=unknown",
+      "status": "skipped"
+    },
+    "florincourt": {
+      "consecutive_failures": 0,
+      "count": 0,
+      "last_ok": null,
+      "reason": "ats=unknown",
+      "status": "skipped"
+    },
+    "flowtraders": {
+      "consecutive_failures": 0,
+      "count": 30,
+      "last_ok": "2026-06-08T18:37:09+00:00",
+      "status": "ok"
+    },
+    "goldmansachs": {
+      "consecutive_failures": 0,
+      "count": 0,
+      "last_ok": null,
+      "reason": "ats=unknown",
+      "status": "skipped"
+    },
+    "gresearch": {
+      "consecutive_failures": 0,
+      "count": 0,
+      "last_ok": null,
+      "reason": "ats=unknown",
+      "status": "skipped"
+    },
+    "gsacapital": {
+      "consecutive_failures": 0,
+      "count": 9,
+      "last_ok": "2026-06-08T18:37:09+00:00",
+      "status": "ok"
+    },
+    "headlands": {
+      "consecutive_failures": 0,
+      "count": 0,
+      "last_ok": null,
+      "reason": "ats=unknown",
+      "status": "skipped"
+    },
+    "hrt": {
+      "consecutive_failures": 0,
+      "count": 0,
+      "last_ok": null,
+      "reason": "ats=unknown",
+      "status": "skipped"
+    },
+    "hsbc": {
+      "consecutive_failures": 0,
+      "count": 0,
+      "last_ok": null,
+      "reason": "ats=unknown",
+      "status": "skipped"
+    },
+    "imc": {
+      "consecutive_failures": 0,
+      "count": 133,
+      "last_ok": "2026-06-08T18:37:09+00:00",
+      "status": "ok"
+    },
+    "janestreet": {
+      "consecutive_failures": 0,
+      "count": 208,
+      "last_ok": "2026-06-08T18:37:09+00:00",
+      "status": "ok"
+    },
+    "jpmorgan": {
+      "consecutive_failures": 0,
+      "count": 0,
+      "last_ok": null,
+      "reason": "ats=unknown",
+      "status": "skipped"
+    },
+    "jumptrading": {
+      "consecutive_failures": 0,
+      "count": 66,
+      "last_ok": "2026-06-08T18:37:09+00:00",
+      "status": "ok"
+    },
+    "kepos": {
+      "consecutive_failures": 0,
+      "count": 0,
+      "last_ok": null,
+      "reason": "ats=unknown",
+      "status": "skipped"
+    },
+    "lynx": {
+      "consecutive_failures": 0,
+      "count": 0,
+      "last_ok": null,
+      "reason": "ats=unknown",
+      "status": "skipped"
+    },
+    "mako": {
+      "consecutive_failures": 0,
+      "count": 7,
+      "last_ok": "2026-06-08T18:37:09+00:00",
+      "status": "ok"
+    },
+    "mangroup": {
+      "consecutive_failures": 0,
+      "count": 64,
+      "last_ok": "2026-06-08T18:37:09+00:00",
+      "status": "ok"
+    },
+    "marshallwace": {
+      "consecutive_failures": 0,
+      "count": 2,
+      "last_ok": "2026-06-08T18:37:09+00:00",
+      "status": "ok"
+    },
+    "maven": {
+      "consecutive_failures": 0,
+      "count": 0,
+      "last_ok": null,
+      "reason": "ats=unknown",
+      "status": "skipped"
+    },
+    "millennium": {
+      "consecutive_failures": 0,
+      "count": 0,
+      "last_ok": null,
+      "reason": "ats=unknown",
+      "status": "skipped"
+    },
+    "morganstanley": {
+      "consecutive_failures": 0,
+      "count": 0,
+      "last_ok": null,
+      "reason": "ats=unknown",
+      "status": "skipped"
+    },
+    "natixis": {
+      "consecutive_failures": 0,
+      "count": 0,
+      "last_ok": null,
+      "reason": "ats=unknown",
+      "status": "skipped"
+    },
+    "nomura": {
+      "consecutive_failures": 0,
+      "count": 0,
+      "last_ok": null,
+      "reason": "ats=unknown",
+      "status": "skipped"
+    },
+    "oldmission": {
+      "consecutive_failures": 0,
+      "count": 0,
+      "last_ok": null,
+      "reason": "ats=unknown",
+      "status": "skipped"
+    },
+    "optiver": {
+      "consecutive_failures": 0,
+      "count": 183,
+      "last_ok": "2026-06-08T18:37:09+00:00",
+      "status": "ok"
+    },
+    "oxam": {
+      "consecutive_failures": 0,
+      "count": 0,
+      "last_ok": null,
+      "reason": "ats=unknown",
+      "status": "skipped"
+    },
+    "pdtpartners": {
+      "consecutive_failures": 0,
+      "count": 0,
+      "last_ok": null,
+      "reason": "ats=unknown",
+      "status": "skipped"
+    },
+    "peak6": {
+      "consecutive_failures": 0,
+      "count": 0,
+      "last_ok": null,
+      "reason": "ats=unknown",
+      "status": "skipped"
+    },
+    "point72": {
+      "consecutive_failures": 0,
+      "count": 249,
+      "last_ok": "2026-06-08T18:37:09+00:00",
+      "status": "ok"
+    },
+    "qrt": {
+      "consecutive_failures": 0,
+      "count": 0,
+      "last_ok": null,
+      "reason": "ats=unknown",
+      "status": "skipped"
+    },
+    "quadrature": {
+      "consecutive_failures": 0,
+      "count": 0,
+      "last_ok": null,
+      "reason": "ats=unknown",
+      "status": "skipped"
+    },
+    "radix": {
+      "consecutive_failures": 0,
+      "count": 0,
+      "last_ok": null,
+      "reason": "ats=unknown",
+      "status": "skipped"
+    },
+    "rbc": {
+      "consecutive_failures": 0,
+      "count": 0,
+      "last_ok": null,
+      "reason": "ats=unknown",
+      "status": "skipped"
+    },
+    "rokos": {
+      "consecutive_failures": 0,
+      "count": 0,
+      "last_ok": null,
+      "reason": "ats=unknown",
+      "status": "skipped"
+    },
+    "schonfeld": {
+      "consecutive_failures": 0,
+      "count": 61,
+      "last_ok": "2026-06-08T18:37:09+00:00",
+      "status": "ok"
+    },
+    "sig": {
+      "consecutive_failures": 0,
+      "count": 0,
+      "last_ok": null,
+      "reason": "ats=unknown",
+      "status": "skipped"
+    },
+    "socgen": {
+      "consecutive_failures": 0,
+      "count": 0,
+      "last_ok": null,
+      "reason": "ats=unknown",
+      "status": "skipped"
+    },
+    "squarepoint": {
+      "consecutive_failures": 0,
+      "count": 80,
+      "last_ok": "2026-06-08T18:37:09+00:00",
+      "status": "ok"
+    },
+    "systematica": {
+      "consecutive_failures": 0,
+      "count": 0,
+      "last_ok": null,
+      "reason": "ats=unknown",
+      "status": "skipped"
+    },
+    "tibra": {
+      "consecutive_failures": 0,
+      "count": 0,
+      "last_ok": null,
+      "reason": "ats=unknown",
+      "status": "skipped"
+    },
+    "towerresearch": {
+      "consecutive_failures": 0,
+      "count": 0,
+      "last_ok": null,
+      "reason": "ats=unknown",
+      "status": "skipped"
+    },
+    "transtrend": {
+      "consecutive_failures": 0,
+      "count": 0,
+      "last_ok": null,
+      "reason": "ats=unknown",
+      "status": "skipped"
+    },
+    "trexquant": {
+      "consecutive_failures": 0,
+      "count": 41,
+      "last_ok": "2026-06-08T18:37:09+00:00",
+      "status": "ok"
+    },
+    "twosigma": {
+      "consecutive_failures": 0,
+      "count": 0,
+      "last_ok": null,
+      "reason": "ats=unknown",
+      "status": "skipped"
+    },
+    "ubs": {
+      "consecutive_failures": 0,
+      "count": 0,
+      "last_ok": null,
+      "reason": "ats=unknown",
+      "status": "skipped"
+    },
+    "verition": {
+      "consecutive_failures": 0,
+      "count": 0,
+      "last_ok": null,
+      "reason": "ats=unknown",
+      "status": "skipped"
+    },
+    "virtu": {
+      "consecutive_failures": 0,
+      "count": 38,
+      "last_ok": "2026-06-08T18:37:09+00:00",
+      "status": "ok"
+    },
+    "vivcourt": {
+      "consecutive_failures": 0,
+      "count": 0,
+      "last_ok": null,
+      "reason": "ats=unknown",
+      "status": "skipped"
+    },
+    "voleon": {
+      "consecutive_failures": 0,
+      "count": 57,
+      "last_ok": "2026-06-08T18:37:09+00:00",
+      "status": "ok"
+    },
+    "walleye": {
+      "consecutive_failures": 0,
+      "count": 0,
+      "last_ok": null,
+      "reason": "ats=unknown",
+      "status": "skipped"
+    },
+    "wintermute": {
+      "consecutive_failures": 0,
+      "count": 0,
+      "last_ok": null,
+      "reason": "ats=unknown",
+      "status": "skipped"
+    },
+    "winton": {
+      "consecutive_failures": 0,
+      "count": 10,
+      "last_ok": "2026-06-08T18:37:09+00:00",
+      "status": "ok"
+    },
+    "wolverine": {
+      "consecutive_failures": 0,
+      "count": 0,
+      "last_ok": null,
+      "reason": "ats=unknown",
+      "status": "skipped"
+    },
+    "worldquant": {
+      "consecutive_failures": 0,
+      "count": 101,
+      "last_ok": "2026-06-08T18:37:09+00:00",
+      "status": "ok"
+    },
+    "xtx": {
+      "consecutive_failures": 0,
+      "count": 0,
+      "last_ok": null,
+      "reason": "ats=unknown",
+      "status": "skipped"
+    }
+  }
+}

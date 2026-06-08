@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Job Intelligence — Buy-side / Quant Europe</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header>
+    <div class="brand">
+      <h1>Job Intelligence</h1>
+      <span class="subtitle">Buy-side · Quant · Market trading — Europe</span>
+    </div>
+    <div id="stats" class="stats"></div>
+  </header>
+
+  <nav class="tabs">
+    <button class="tab active" data-tab="jobs">Offres</button>
+    <button class="tab" data-tab="activity">Activité</button>
+    <button class="tab" data-tab="sources">Sources</button>
+  </nav>
+
+  <!-- JOBS -->
+  <section id="tab-jobs" class="tab-panel active">
+    <div class="filters">
+      <input id="q" type="search" placeholder="Recherche (titre, employeur, ville…)" />
+      <select id="f-role" multiple size="6" title="Famille de rôle"></select>
+      <select id="f-type" multiple size="5" title="Type d'employeur"></select>
+      <select id="f-seniority" multiple size="6" title="Séniorité"></select>
+      <select id="f-asset" multiple size="6" title="Classe d'actifs"></select>
+      <select id="f-source" multiple size="4" title="Source"></select>
+      <div class="filter-col">
+        <label><input type="checkbox" id="f-target" /> Villes cibles uniquement</label>
+        <label><input type="checkbox" id="f-open" checked /> Masquer les offres fermées</label>
+        <select id="sort">
+          <option value="last_changed">Tri : dernière modif</option>
+          <option value="first_seen">Tri : nouveauté</option>
+          <option value="employer">Tri : employeur</option>
+        </select>
+        <button id="reset" class="ghost">Réinitialiser</button>
+      </div>
+    </div>
+    <div id="result-count" class="result-count"></div>
+    <div id="jobs" class="jobs"></div>
+  </section>
+
+  <!-- ACTIVITY -->
+  <section id="tab-activity" class="tab-panel">
+    <div class="filters">
+      <select id="a-kind" multiple size="3" title="Type d'évènement">
+        <option value="NEW" selected>NEW</option>
+        <option value="MODIFIED" selected>MODIFIED</option>
+        <option value="CLOSED" selected>CLOSED</option>
+      </select>
+    </div>
+    <div id="activity" class="activity"></div>
+  </section>
+
+  <!-- SOURCES -->
+  <section id="tab-sources" class="tab-panel">
+    <div id="sources" class="sources"></div>
+  </section>
+
+  <footer>
+    <span id="footer-meta"></span>
+    <span>· Couverture mesurée, pas garantie · 0-budget · données rafraîchies 2×/jour</span>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
