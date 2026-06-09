@@ -4,6 +4,25 @@ from __future__ import annotations
 from jobintel.employers_index import resolve, normalize_name
 from jobintel.scrapers.workday import _REQ
 from jobintel.scrapers.efinancialcareers import _extract_objects
+from jobintel.dedup import build_canonical, _coerce_locations
+from jobintel.models import RawPosting
+
+
+def test_coerce_locations_handles_dicts():
+    assert _coerce_locations(["London", {"city": "Paris"},
+                              {"label": "Geneva, CH"}, 5]) == \
+        ["London", "Paris", "Geneva, CH", "5"]
+
+
+def test_build_canonical_survives_dict_location():
+    # a source returning dict locations must not crash the crawl
+    raw = RawPosting(source="efinancialcareers", employer_id="ext-x",
+                     employer_name="X", external_id="1", url="u",
+                     raw_title="Quantitative Trader",
+                     locations=[{"city": "London"}])
+    jobs, sources = build_canonical([raw], {}, "2026-01-01T00:00:00")
+    assert len(jobs) == 1
+    assert next(iter(jobs.values())).locations == ["London"]
 
 
 def test_resolve_watchlist_exact():

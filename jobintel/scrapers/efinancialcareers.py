@@ -72,7 +72,10 @@ class EfcScraper(QueryScraper):
                 continue
             company = o.get("fullCompanyName") or o.get("companyName") or ""
             emp_id, emp_name, _ = resolve(company)
-            loc = o.get("jobLocation") or (o.get("location") or {}).get("label") or location
+            locobj = o.get("location") if isinstance(o.get("location"), dict) else {}
+            loc = o.get("jobLocation")
+            if not isinstance(loc, str) or not loc:
+                loc = locobj.get("label") or locobj.get("city") or location
             ext_id = str(o.get("jobId") or o.get("id") or "")
             href = o.get("detailsPageUrl") or ""
             if href and href.startswith("/"):
