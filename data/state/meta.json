@@ -1,29 +1,29 @@
 {
   "counts": {
-    "employers_crawled_ok": 25,
+    "employers_crawled_ok": 24,
     "employers_total": 78,
-    "jobs_in_scope_open": 650,
-    "jobs_total": 14231,
+    "jobs_in_scope_open": 644,
+    "jobs_total": 14254,
     "purged": 0,
-    "raw_postings": 3215
+    "raw_postings": 2511
   },
   "events_this_run": {
-    "CLOSED": 9,
-    "MODIFIED": 5,
-    "NEW": 3
+    "CLOSED": 11,
+    "MODIFIED": 2,
+    "NEW": 5
   },
-  "last_run": "2026-10-30T18:12:17+00:00",
+  "last_run": "2026-10-31T06:15:39+00:00",
   "source_health": {
     "akunacapital": {
       "consecutive_failures": 0,
       "count": 32,
-      "last_ok": "2026-10-30T18:12:17+00:00",
+      "last_ok": "2026-10-31T06:15:39+00:00",
       "status": "ok"
     },
     "aqr": {
       "consecutive_failures": 0,
       "count": 55,
-      "last_ok": "2026-10-30T18:12:17+00:00",
+      "last_ok": "2026-10-31T06:15:39+00:00",
       "status": "ok"
     },
     "aspectcapital": {
@@ -41,10 +41,11 @@
       "status": "skipped"
     },
     "barclays": {
-      "consecutive_failures": 0,
-      "count": 714,
+      "consecutive_failures": 1,
+      "count": 0,
       "last_ok": "2026-10-30T18:12:17+00:00",
-      "status": "ok"
+      "reason": "Expecting value: line 1 column 1 (char 0)",
+      "status": "error"
     },
     "belvedere": {
       "consecutive_failures": 0,
@@ -84,7 +85,7 @@
     "caxton": {
       "consecutive_failures": 0,
       "count": 24,
-      "last_ok": "2026-10-30T18:12:17+00:00",
+      "last_ok": "2026-10-31T06:15:39+00:00",
       "status": "ok"
     },
     "citadel": {
@@ -111,7 +112,7 @@
     "ctc": {
       "consecutive_failures": 0,
       "count": 18,
-      "last_ok": "2026-10-30T18:12:17+00:00",
+      "last_ok": "2026-10-31T06:15:39+00:00",
       "status": "ok"
     },
     "cubist": {
@@ -124,7 +125,7 @@
     "davinci": {
       "consecutive_failures": 0,
       "count": 17,
-      "last_ok": "2026-10-30T18:12:17+00:00",
+      "last_ok": "2026-10-31T06:15:39+00:00",
       "status": "ok"
     },
     "deshaw": {
@@ -150,9 +151,9 @@
     },
     "efinancialcareers": {
       "consecutive_failures": 0,
-      "count": 243,
+      "count": 245,
       "errors": 0,
-      "last_ok": "2026-10-30T18:12:17+00:00",
+      "last_ok": "2026-10-31T06:15:39+00:00",
       "status": "ok"
     },
     "eisler": {
@@ -165,13 +166,13 @@
     "engineersgate": {
       "consecutive_failures": 0,
       "count": 10,
-      "last_ok": "2026-10-30T18:12:17+00:00",
+      "last_ok": "2026-10-31T06:15:39+00:00",
       "status": "ok"
     },
     "exoduspoint": {
       "consecutive_failures": 0,
       "count": 3,
-      "last_ok": "2026-10-30T18:12:17+00:00",
+      "last_ok": "2026-10-31T06:15:39+00:00",
       "status": "ok"
     },
     "fiverings": {
@@ -191,7 +192,7 @@
     "flowtraders": {
       "consecutive_failures": 0,
       "count": 48,
-      "last_ok": "2026-10-30T18:12:17+00:00",
+      "last_ok": "2026-10-31T06:15:39+00:00",
       "status": "ok"
     },
     "goldmansachs": {
@@ -211,7 +212,7 @@
     "gsacapital": {
       "consecutive_failures": 0,
       "count": 12,
-      "last_ok": "2026-10-30T18:12:17+00:00",
+      "last_ok": "2026-10-31T06:15:39+00:00",
       "status": "ok"
     },
     "headlands": {
@@ -237,14 +238,14 @@
     },
     "imc": {
       "consecutive_failures": 0,
-      "count": 167,
-      "last_ok": "2026-10-30T18:12:17+00:00",
+      "count": 168,
+      "last_ok": "2026-10-31T06:15:39+00:00",
       "status": "ok"
     },
     "janestreet": {
       "consecutive_failures": 0,
       "count": 218,
-      "last_ok": "2026-10-30T18:12:17+00:00",
+      "last_ok": "2026-10-31T06:15:39+00:00",
       "status": "ok"
     },
     "jpmorgan": {
@@ -257,7 +258,7 @@
     "jumptrading": {
       "consecutive_failures": 0,
       "count": 96,
-      "last_ok": "2026-10-30T18:12:17+00:00",
+      "last_ok": "2026-10-31T06:15:39+00:00",
       "status": "ok"
     },
     "kepos": {
@@ -269,9 +270,9 @@
     },
     "linkedin": {
       "consecutive_failures": 0,
-      "count": 703,
+      "count": 710,
       "errors": 0,
-      "last_ok": "2026-10-30T18:12:17+00:00",
+      "last_ok": "2026-10-31T06:15:39+00:00",
       "status": "ok"
     },
     "lynx": {
@@ -284,19 +285,19 @@
     "mako": {
       "consecutive_failures": 0,
       "count": 2,
-      "last_ok": "2026-10-30T18:12:17+00:00",
+      "last_ok": "2026-10-31T06:15:39+00:00",
       "status": "ok"
     },
     "mangroup": {
       "consecutive_failures": 0,
       "count": 68,
-      "last_ok": "2026-10-30T18:12:17+00:00",
+      "last_ok": "2026-10-31T06:15:39+00:00",
       "status": "ok"
     },
     "marshallwace": {
       "consecutive_failures": 0,
       "count": 0,
-      "last_ok": "2026-10-30T18:12:17+00:00",
+      "last_ok": "2026-10-31T06:15:39+00:00",
       "status": "ok"
     },
     "maven": {
@@ -343,8 +344,8 @@
     },
     "optiver": {
       "consecutive_failures": 0,
-      "count": 157,
-      "last_ok": "2026-10-30T18:12:17+00:00",
+      "count": 158,
+      "last_ok": "2026-10-31T06:15:39+00:00",
       "status": "ok"
     },
     "oxam": {
@@ -370,8 +371,8 @@
     },
     "point72": {
       "consecutive_failures": 0,
-      "count": 207,
-      "last_ok": "2026-10-30T18:12:17+00:00",
+      "count": 206,
+      "last_ok": "2026-10-31T06:15:39+00:00",
       "status": "ok"
     },
     "qrt": {
@@ -412,7 +413,7 @@
     "schonfeld": {
       "consecutive_failures": 0,
       "count": 70,
-      "last_ok": "2026-10-30T18:12:17+00:00",
+      "last_ok": "2026-10-31T06:15:39+00:00",
       "status": "ok"
     },
     "sig": {
@@ -432,7 +433,7 @@
     "squarepoint": {
       "consecutive_failures": 0,
       "count": 90,
-      "last_ok": "2026-10-30T18:12:17+00:00",
+      "last_ok": "2026-10-31T06:15:39+00:00",
       "status": "ok"
     },
     "systematica": {
@@ -466,7 +467,7 @@
     "trexquant": {
       "consecutive_failures": 0,
       "count": 52,
-      "last_ok": "2026-10-30T18:12:17+00:00",
+      "last_ok": "2026-10-31T06:15:39+00:00",
       "status": "ok"
     },
     "twosigma": {
@@ -493,7 +494,7 @@
     "virtu": {
       "consecutive_failures": 0,
       "count": 47,
-      "last_ok": "2026-10-30T18:12:17+00:00",
+      "last_ok": "2026-10-31T06:15:39+00:00",
       "status": "ok"
     },
     "vivcourt": {
@@ -506,7 +507,7 @@
     "voleon": {
       "consecutive_failures": 0,
       "count": 63,
-      "last_ok": "2026-10-30T18:12:17+00:00",
+      "last_ok": "2026-10-31T06:15:39+00:00",
       "status": "ok"
     },
     "walleye": {
@@ -526,7 +527,7 @@
     "winton": {
       "consecutive_failures": 0,
       "count": 6,
-      "last_ok": "2026-10-30T18:12:17+00:00",
+      "last_ok": "2026-10-31T06:15:39+00:00",
       "status": "ok"
     },
     "wolverine": {
@@ -539,7 +540,7 @@
     "worldquant": {
       "consecutive_failures": 0,
       "count": 93,
-      "last_ok": "2026-10-30T18:12:17+00:00",
+      "last_ok": "2026-10-31T06:15:39+00:00",
       "status": "ok"
     },
     "xtx": {
